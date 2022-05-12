@@ -9,23 +9,25 @@
 /* Begin PBXBuildFile section */
 		B1CCB7072825054E00D28A07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCB7062825054E00D28A07 /* AppDelegate.swift */; };
 		B1CCB7092825054E00D28A07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCB7082825054E00D28A07 /* SceneDelegate.swift */; };
-		B1CCB70B2825054E00D28A07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCB70A2825054E00D28A07 /* ViewController.swift */; };
+		B1CCB70B2825054E00D28A07 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCB70A2825054E00D28A07 /* MapsViewController.swift */; };
 		B1CCB70E2825054E00D28A07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1CCB70C2825054E00D28A07 /* Main.storyboard */; };
 		B1CCB7112825054E00D28A07 /* HaritalarUygulamasi.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B1CCB70F2825054E00D28A07 /* HaritalarUygulamasi.xcdatamodeld */; };
 		B1CCB7132825055000D28A07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1CCB7122825055000D28A07 /* Assets.xcassets */; };
 		B1CCB7162825055000D28A07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1CCB7142825055000D28A07 /* LaunchScreen.storyboard */; };
+		B1DE91B4282D96540001B355 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DE91B3282D96540001B355 /* ListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B1CCB7032825054E00D28A07 /* HaritalarUygulamasi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HaritalarUygulamasi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1CCB7062825054E00D28A07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1CCB7082825054E00D28A07 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B1CCB70A2825054E00D28A07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B1CCB70A2825054E00D28A07 /* MapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		B1CCB70D2825054E00D28A07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B1CCB7102825054E00D28A07 /* HaritalarUygulamasi.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HaritalarUygulamasi.xcdatamodel; sourceTree = "<group>"; };
 		B1CCB7122825055000D28A07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B1CCB7152825055000D28A07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1CCB7172825055000D28A07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1DE91B3282D96540001B355 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +62,8 @@
 			children = (
 				B1CCB7062825054E00D28A07 /* AppDelegate.swift */,
 				B1CCB7082825054E00D28A07 /* SceneDelegate.swift */,
-				B1CCB70A2825054E00D28A07 /* ViewController.swift */,
+				B1DE91B3282D96540001B355 /* ListViewController.swift */,
+				B1CCB70A2825054E00D28A07 /* MapsViewController.swift */,
 				B1CCB70C2825054E00D28A07 /* Main.storyboard */,
 				B1CCB7122825055000D28A07 /* Assets.xcassets */,
 				B1CCB7142825055000D28A07 /* LaunchScreen.storyboard */,
@@ -141,9 +144,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1CCB70B2825054E00D28A07 /* ViewController.swift in Sources */,
+				B1CCB70B2825054E00D28A07 /* MapsViewController.swift in Sources */,
 				B1CCB7072825054E00D28A07 /* AppDelegate.swift in Sources */,
 				B1CCB7112825054E00D28A07 /* HaritalarUygulamasi.xcdatamodeld in Sources */,
+				B1DE91B4282D96540001B355 /* ListViewController.swift in Sources */,
 				B1CCB7092825054E00D28A07 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
