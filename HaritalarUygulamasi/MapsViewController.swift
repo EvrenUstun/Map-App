@@ -37,7 +37,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         locationManager.startUpdatingLocation()
         
         let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(konumSec(gestureRecognizer:)))
-        gestureRecognizer.minimumPressDuration = 2
+        gestureRecognizer.minimumPressDuration = 3
         mapView.addGestureRecognizer(gestureRecognizer)
         
         
@@ -81,20 +81,17 @@ class MapsViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                                             isimTextField.text = annotationTitle
                                             notTextField.text = annotationSubtitle
                                             
+                                            locationManager.stopUpdatingLocation()
+                                            
+                                            let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                                            let region = MKCoordinateRegion(center: coordinate, span: span)
+                                            mapView.setRegion(region, animated: true)
                                         }
                                     }
                                 }
                             }
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
+                              
                         }
-                        
                         
                     }
                     
@@ -108,6 +105,59 @@ class MapsViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             // yeni veri ekleme 
         }
         
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            
+            if annotation is MKUserLocation {
+                return nil
+            }
+            
+            let reusableId = "AnnotationId"
+            var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reusableId)
+            
+            if pinView == nil {
+                
+                pinView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reusableId)
+                pinView?.canShowCallout = true
+                pinView?.tintColor = .red
+                
+                let annotationButton = UIButton(type: .detailDisclosure)
+                pinView?.rightCalloutAccessoryView = annotationButton
+                
+            }else{
+                pinView?.annotation = annotation
+            }
+            
+            return pinView
+        }
+    
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if secilenIsim != "" {
+            
+            var requestLocation = CLLocation(latitude: annotationLatitude, longitude: annotationLongitude)
+            
+            CLGeocoder().reverseGeocodeLocation(requestLocation) { (placemarkArray, hata) in
+                
+                if let placemarks = placemarkArray{
+                    if placemarks.count > 0 {
+                        
+                        let newPlacemark = MKPlacemark(placemark: placemarks[0])
+                        let item = MKMapItem(placemark: newPlacemark)
+                        
+                        item.name = self.annotationTitle
+                        
+                        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+                        
+                        item.openInMaps(launchOptions: launchOptions)
+                        
+                    }
+                }
+                
+            }
+            
+        }
     }
     
     @objc func konumSec(gestureRecognizer : UILongPressGestureRecognizer){
@@ -127,13 +177,14 @@ class MapsViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // print(locations[0].coordinate.latitude)
-        // print(locations[0].coordinate.longitude)
-        let location = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05 )
-        let region = MKCoordinateRegion(center: location, span: span)
+        if secilenIsim == ""{
+            let location = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
+            let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05 )
+            let region = MKCoordinateRegion(center: location, span: span)
+            
+            mapView.setRegion(region, animated: true)
+        }
         
-        mapView.setRegion(region, animated: true)
     }
 
 
@@ -157,6 +208,8 @@ class MapsViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             print("hata")
         }
         
+        NotificationCenter.default.post(name: NSNotification.Name("addedNewPlace"), object: nil)
+        navigationController?.popViewController(animated: true)
             
     }
 }
